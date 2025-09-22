@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "last_updated": "2025-09-22",
   "description": "Archivo de URLs de trailers para películas TMDB. Mapea movie_id con información del trailer.",
   "trailers": {
@@ -69,6 +69,13 @@
     "1147416": {
       "title": "The Substance",
       "youtube_url": "https://www.youtube.com/watch?v=UgOOvMQFH-c",
+      "language": "es",
+      "type": "Trailer",
+      "quality": "HD"
+    },
+    "402431": {
+      "title": "Wicked",
+      "youtube_url": "https://www.youtube.com/watch?v=JDSRDbFqc_E",
       "language": "es",
       "type": "Trailer",
       "quality": "HD"
