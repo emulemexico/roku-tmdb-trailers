@@ -279,9 +279,19 @@ function extractTrailerFromData(jsonData as Object, movieId as String) as String
     if jsonData <> invalid and jsonData.trailers <> invalid
         if jsonData.trailers.DoesExist(movieId)
             trailerInfo = jsonData.trailers[movieId]
-            if trailerInfo <> invalid and trailerInfo.youtube_url <> invalid
-                print "Found trailer for movie " + movieId + ": " + trailerInfo.youtube_url
-                return trailerInfo.youtube_url
+            if trailerInfo <> invalid and trailerInfo.video_url <> invalid
+                print "Found trailer for movie " + movieId + ": " + trailerInfo.video_url
+                
+                ' Obtener formato si está disponible
+                format = ""
+                if trailerInfo.format <> invalid
+                    format = trailerInfo.format
+                    print "  Format: " + format
+                end if
+                
+                ' Procesar la URL según su formato
+                processedUrl = processVideoUrl(trailerInfo.video_url, format)
+                return processedUrl
             end if
         end if
     end if
@@ -322,3 +332,42 @@ sub saveTrailerDataToCache(jsonString as String)
     
     print "Trailer data cached successfully"
 end sub
+
+' Función para detectar y procesar el formato de video
+function processVideoUrl(videoUrl as String, format as String) as String
+    if videoUrl = ""
+        return ""
+    end if
+    
+    ' Si no se especifica formato, intentar detectarlo desde la URL
+    if format = invalid or format = ""
+        if videoUrl.InStr(".m3u8") > -1
+            format = "HLS"
+        else if videoUrl.InStr(".mp4") > -1
+            format = "MP4"
+        else if videoUrl.InStr("youtube.com") > -1 or videoUrl.InStr("youtu.be") > -1
+            format = "YOUTUBE"
+        else if videoUrl.InStr(".mpd") > -1
+            format = "DASH"
+        else
+            format = "UNKNOWN"
+        end if
+    end if
+    
+    print "Processing video URL with format: " + format
+    
+    ' Manejar diferentes formatos
+    if format = "HLS" or format = "MP4" or format = "DASH"
+        ' URLs directos de video - listos para reproducir en Roku
+        print "Direct video URL detected: " + videoUrl
+        return videoUrl
+    else if format = "YOUTUBE"
+        ' URLs de YouTube - mostrar URL para referencia (Roku no puede reproducir YouTube directamente)
+        print "YouTube URL detected: " + videoUrl
+        return videoUrl + " (YouTube URL - Requires external player)"
+    else
+        ' Formato desconocido - intentar como URL directo
+        print "Unknown format, treating as direct URL: " + videoUrl
+        return videoUrl
+    end if
+end function

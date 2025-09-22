@@ -1,8 +1,8 @@
-# Sistema de Trailers Externos para Roku TMDB App
+# Sistema de Trailers Directos para Roku TMDB App
 
 ## Descripción
 
-Este sistema permite mantener las URLs de los trailers de películas en un archivo JSON externo alojado en GitHub, facilitando las actualizaciones sin necesidad de modificar el código de la aplicación Roku.
+Este sistema permite mantener URLs directos de trailers de películas en un archivo JSON externo alojado en GitHub, facilitando las actualizaciones sin necesidad de modificar el código de la aplicación Roku. El sistema soporta múltiples formatos de video incluyendo HLS, MP4, DASH y URLs de YouTube.
 
 ## Estructura del Archivo JSON
 
@@ -10,22 +10,24 @@ El archivo `trailers.json` debe tener la siguiente estructura:
 
 ```json
 {
-  "version": "1.0",
+  "version": "2.0",
   "last_updated": "2025-09-22",
-  "description": "Archivo de URLs de trailers para películas TMDB",
+  "description": "Archivo de URLs directos de trailers para películas TMDB",
   "trailers": {
     "MOVIE_ID": {
       "title": "Título de la Película",
-      "youtube_url": "https://www.youtube.com/watch?v=VIDEO_ID",
+      "video_url": "https://ejemplo.com/video.m3u8",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "HLS"
     }
   },
-  "fallback": {
-    "enabled": true,
-    "use_tmdb_api": true,
-    "description": "Si no se encuentra trailer en este archivo, usar API de TMDB como respaldo"
+  "supported_formats": {
+    "HLS": "HTTP Live Streaming (.m3u8) - Recomendado para Roku",
+    "MP4": "MPEG-4 directo - Compatible con Roku", 
+    "YOUTUBE": "URLs de YouTube - Requieren procesamiento adicional",
+    "DASH": "Dynamic Adaptive Streaming - Compatible con Roku"
   }
 }
 ```
@@ -34,10 +36,37 @@ El archivo `trailers.json` debe tener la siguiente estructura:
 
 - **MOVIE_ID**: El ID de la película en TMDB (como string)
 - **title**: Título de la película
-- **youtube_url**: URL completa del trailer en YouTube
+- **video_url**: URL directo del trailer (HLS, MP4, DASH, etc.)
 - **language**: Idioma del trailer (es, en, etc.)
 - **type**: Tipo de video (Trailer, Teaser, Clip)
-- **quality**: Calidad del video (HD, SD)
+- **quality**: Calidad del video (HD, SD, 4K)
+- **format**: Formato del video (HLS, MP4, DASH, YOUTUBE)
+
+## Formatos de Video Soportados
+
+### 🎥 HLS (HTTP Live Streaming) - RECOMENDADO
+- **Extensión**: `.m3u8`
+- **Ventajas**: Streaming adaptativo, mejor para conexiones variables
+- **Ejemplo**: `https://ejemplo.com/video/playlist.m3u8`
+- **Compatibilidad**: ✅ Roku nativo
+
+### 🎬 MP4 (MPEG-4)
+- **Extensión**: `.mp4`
+- **Ventajas**: Simple, directo, buena calidad
+- **Ejemplo**: `https://ejemplo.com/video.mp4`
+- **Compatibilidad**: ✅ Roku nativo
+
+### 📺 DASH (Dynamic Adaptive Streaming)
+- **Extensión**: `.mpd`
+- **Ventajas**: Streaming adaptativo avanzado
+- **Ejemplo**: `https://ejemplo.com/video.mpd`
+- **Compatibilidad**: ✅ Roku nativo
+
+### 🔗 YouTube URLs
+- **Formato**: URLs de YouTube
+- **Uso**: Para referencia o procesamiento externo
+- **Ejemplo**: `https://www.youtube.com/watch?v=VIDEO_ID`
+- **Compatibilidad**: ⚠️ Requiere procesamiento adicional
 
 ## Configuración en GitHub
 
@@ -73,8 +102,14 @@ jsonUrl = "https://raw.githubusercontent.com/johndoe/roku-tmdb-trailers/main/tra
 - Busca la película
 - El ID está en la URL: `https://www.themoviedb.org/movie/MOVIE_ID-title`
 
-### 2. Encontrar el Trailer en YouTube
+### 2. Obtener URL Directo del Video
 
+**Para URLs directos (Recomendado):**
+- Usa servicios de hosting de video que proporcionen URLs directos
+- Formatos soportados: HLS (.m3u8), MP4 (.mp4), DASH (.mpd)
+- Asegúrate de que el servidor soporte CORS para Roku
+
+**Para YouTube (Alternativo):**
 1. Busca el trailer oficial en YouTube
 2. Copia la URL completa del video
 3. Prefiere trailers en español si están disponibles
@@ -84,21 +119,28 @@ jsonUrl = "https://raw.githubusercontent.com/johndoe/roku-tmdb-trailers/main/tra
 Agrega una nueva entrada en la sección `trailers`:
 
 ```json
-"533535": {
-  "title": "Deadpool & Wolverine",
-  "youtube_url": "https://www.youtube.com/watch?v=73_1biulkYk",
+"MOVIE_ID": {
+  "title": "Título de la Película",
+  "video_url": "https://ejemplo.com/video.m3u8",
   "language": "es",
   "type": "Trailer",
-  "quality": "HD"
+  "quality": "HD",
+  "format": "HLS"
 }
-```
-
 ### 4. Actualizar Metadatos
 
 - Actualiza `last_updated` con la fecha actual
 - Opcionalmente incrementa `version` para cambios mayores
 
 ## Funcionamiento del Sistema
+
+### Procesamiento de URLs
+
+El sistema detecta automáticamente el formato del video:
+- **HLS (.m3u8)**: Listo para streaming en Roku
+- **MP4 (.mp4)**: Reproducción directa en Roku  
+- **DASH (.mpd)**: Streaming adaptativo en Roku
+- **YouTube**: Marcado para procesamiento especial
 
 ### Cache Local
 
@@ -118,11 +160,13 @@ Agrega una nueva entrada en la sección `trailers`:
 El sistema genera logs detallados:
 
 ```
-Trailer requested for movie ID: 533535
-Using cached trailer data
-Found trailer for movie 533535: https://www.youtube.com/watch?v=73_1biulkYk
+Trailer requested for movie ID: 1061474
+Found trailer for movie 1061474: https://v1.ecartelera.com/video/35100/35108/playlist.m3u8
+  Format: HLS
+Processing video URL with format: HLS
+Direct video URL detected: https://v1.ecartelera.com/video/35100/35108/playlist.m3u8
 ```
-
+Using cached trailer data
 O en caso de fallback:
 
 ```
@@ -131,12 +175,30 @@ Trailer not found in external JSON, falling back to TMDB API...
 
 ## Ventajas del Sistema
 
-1. **Actualizaciones Fáciles**: Solo edita el archivo JSON en GitHub
-2. **Sin Recompilación**: Los cambios se reflejan inmediatamente
-3. **Control de Calidad**: Puedes elegir trailers específicos de mejor calidad
-4. **Multiidioma**: Prioriza trailers en español pero mantiene fallback
-5. **Performance**: Sistema de cache reduce llamadas de red
-6. **Confiabilidad**: Fallback automático a API de TMDB
+1. **URLs Directos**: Reproducción nativa en Roku sin procesamiento adicional
+2. **Múltiples Formatos**: Soporte para HLS, MP4, DASH y YouTube
+3. **Actualizaciones Fáciles**: Solo edita el archivo JSON en GitHub
+4. **Sin Recompilación**: Los cambios se reflejan inmediatamente
+5. **Control de Calidad**: Puedes elegir trailers específicos de mejor calidad
+6. **Detección Automática**: El sistema detecta el formato del video automáticamente
+7. **Multiidioma**: Prioriza trailers en español pero mantiene fallback
+8. **Performance**: Sistema de cache reduce llamadas de red
+9. **Confiabilidad**: Fallback automático a API de TMDB
+
+## Mejores Prácticas para URLs Directos
+
+### ✅ Recomendaciones
+- **Usa HLS (.m3u8)** para mejor adaptabilidad de red
+- **Verifica CORS** - El servidor debe permitir requests desde Roku
+- **Prueba URLs** antes de agregarlos al JSON
+- **Usa HTTPS** siempre que sea posible
+- **Calidad HD** (1280x720) es ideal para Roku
+
+### ⚠️ Consideraciones
+- **Evita URLs temporales** que expiren rápidamente
+- **Verifica la región** - algunos contenidos pueden estar geo-bloqueados
+- **Tamaño de archivo** - URLs muy grandes pueden causar buffering
+- **Ancho de banda** - Considera la velocidad promedio de usuarios
 
 ## Mantenimiento
 

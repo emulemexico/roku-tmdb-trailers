@@ -1,89 +1,106 @@
 {
-  "version": "1.1",
+  "version": "2.0",
   "last_updated": "2025-09-22",
-  "description": "Archivo de URLs de trailers para películas TMDB. Mapea movie_id con información del trailer.",
+  "description": "Archivo de URLs directos de trailers para películas TMDB. Mapea movie_id con información del trailer.",
   "trailers": {
-    "912649": {
-      "title": "Venom: The Last Dance",
-      "youtube_url": "https://www.youtube.com/watch?v=__2bjWbetsA",
+    "1061474": {
+      "title": "Superman",
+      "video_url": "https://v1.ecartelera.com/video/35100/35108/playlist.m3u8",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "HLS"
     },
     "533535": {
       "title": "Deadpool & Wolverine", 
-      "youtube_url": "https://www.youtube.com/watch?v=73_1biulkYk",
+      "video_url": "https://www.youtube.com/watch?v=73_1biulkYk",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     },
     "1022789": {
       "title": "Inside Out 2",
-      "youtube_url": "https://www.youtube.com/watch?v=LEjhY15eCx0",
+      "video_url": "https://www.youtube.com/watch?v=LEjhY15eCx0",
       "language": "es", 
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     },
     "519182": {
       "title": "Despicable Me 4",
-      "youtube_url": "https://www.youtube.com/watch?v=qQlr9-rF32A",
+      "video_url": "https://www.youtube.com/watch?v=qQlr9-rF32A",
       "language": "es",
       "type": "Trailer", 
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     },
     "748783": {
       "title": "The Garfield Movie",
-      "youtube_url": "https://www.youtube.com/watch?v=IeFWNtMo1Fs",
+      "video_url": "https://www.youtube.com/watch?v=IeFWNtMo1Fs",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     },
     "1079091": {
       "title": "It Ends with Us",
-      "youtube_url": "https://www.youtube.com/watch?v=HqeNXFH3e7w",
+      "video_url": "https://www.youtube.com/watch?v=HqeNXFH3e7w",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     },
     "573435": {
       "title": "Bad Boys: Ride or Die",
-      "youtube_url": "https://www.youtube.com/watch?v=hRFY_Fesa9Q",
+      "video_url": "https://www.youtube.com/watch?v=hRFY_Fesa9Q",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     },
     "1144962": {
       "title": "Longlegs",
-      "youtube_url": "https://www.youtube.com/watch?v=ZaBklEv6X-s",
+      "video_url": "https://www.youtube.com/watch?v=ZaBklEv6X-s",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     },
     "945961": {
       "title": "Alien: Romulus",
-      "youtube_url": "https://www.youtube.com/watch?v=x0XDEhP4MQs",
+      "video_url": "https://www.youtube.com/watch?v=x0XDEhP4MQs",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     },
     "1147416": {
       "title": "The Substance",
-      "youtube_url": "https://www.youtube.com/watch?v=UgOOvMQFH-c",
+      "video_url": "https://www.youtube.com/watch?v=UgOOvMQFH-c",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     },
     "402431": {
       "title": "Wicked",
-      "youtube_url": "https://www.youtube.com/watch?v=JDSRDbFqc_E",
+      "video_url": "https://www.youtube.com/watch?v=JDSRDbFqc_E",
       "language": "es",
       "type": "Trailer",
-      "quality": "HD"
+      "quality": "HD",
+      "format": "YOUTUBE"
     }
   },
   "fallback": {
     "enabled": true,
     "use_tmdb_api": true,
     "description": "Si no se encuentra trailer en este archivo, usar API de TMDB como respaldo"
+  },
+  "supported_formats": {
+    "HLS": "HTTP Live Streaming (.m3u8) - Recomendado para Roku",
+    "MP4": "MPEG-4 directo - Compatible con Roku",
+    "YOUTUBE": "URLs de YouTube - Requieren procesamiento adicional",
+    "DASH": "Dynamic Adaptive Streaming - Compatible con Roku"
   }
 }
