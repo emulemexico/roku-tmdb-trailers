@@ -135,6 +135,33 @@ sub loadMoviesFromAPI(scene as Object)
                 print "Test movie data added to first movie"
             end if
             
+            ' Agregar películas de prueba con URLs directos funcionales
+            demoMovie1 = {
+                id: 999991,
+                title: "🎬 DEMO: Big Buck Bunny (HLS)",
+                overview: "Video de demostración con URL directo HLS para probar el sistema de trailers. Este video utiliza HTTP Live Streaming (.m3u8) que es ideal para Roku.",
+                releaseDate: "2024-01-01",
+                voteAverage: 9.0,
+                backdrop_path: invalid,
+                HDPosterUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
+            }
+            
+            demoMovie2 = {
+                id: 999992,
+                title: "🎥 DEMO: Sample Video (MP4)",
+                overview: "Video de demostración con URL directo MP4 para probar el sistema de trailers. Este video utiliza formato MP4 directo compatible con Roku.",
+                releaseDate: "2024-01-01",
+                voteAverage: 8.8,
+                backdrop_path: invalid,
+                HDPosterUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg"
+            }
+            
+            ' Insertar las películas demo al principio de la lista
+            movies.unshift(demoMovie2)
+            movies.unshift(demoMovie1)
+            
+            print "Added 2 demo movies with direct URLs for testing"
+            
             ' Enviar los datos de vuelta a la escena
             scene.movieData = movies
         else
