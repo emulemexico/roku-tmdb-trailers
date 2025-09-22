@@ -241,8 +241,7 @@ end function
 ' Función para obtener trailer desde archivo JSON externo
 function getTrailerFromExternalJSON(movieId as String) as String
     ' URL del archivo JSON en GitHub (raw)
-    ' Cuando subas el archivo a GitHub, deberás cambiar esta URL
-    jsonUrl = "https://raw.githubusercontent.com/tu-usuario/tu-repositorio/main/trailers.json"
+    jsonUrl = "https://raw.githubusercontent.com/emulemexico/roku-tmdb-trailers/main/trailers.json"
     
     ' Intentar cargar desde cache local primero
     cachedData = getCachedTrailerData()
