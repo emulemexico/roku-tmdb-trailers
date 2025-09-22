@@ -5,11 +5,11 @@
   "trailers": {
     "1061474": {
       "title": "Superman",
-      "video_url": "https://v1.ecartelera.com/video/35100/35108/playlist.m3u8",
-      "language": "es",
-      "type": "Trailer",
+      "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "language": "en",
+      "type": "Demo",
       "quality": "HD",
-      "format": "HLS"
+      "format": "MP4"
     },
     "533535": {
       "title": "Deadpool & Wolverine", 
@@ -90,6 +90,22 @@
       "type": "Trailer",
       "quality": "HD",
       "format": "YOUTUBE"
+    },
+    "999991": {
+      "title": "Big Buck Bunny (Demo HLS)",
+      "video_url": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
+      "language": "en",
+      "type": "Demo",
+      "quality": "HD",
+      "format": "HLS"
+    },
+    "999992": {
+      "title": "Sample Video (Demo MP4)",
+      "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "language": "en",
+      "type": "Demo",
+      "quality": "HD",
+      "format": "MP4"
     }
   },
   "fallback": {
