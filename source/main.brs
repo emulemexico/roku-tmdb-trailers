@@ -291,7 +291,6 @@ end function
 ' Función para obtener datos de trailer desde cache local
 function getCachedTrailerData() as Object
     ' Verificar si existe un archivo de cache y si no es muy antiguo
-    registry = CreateObject("roRegistry")
     section = CreateObject("roRegistrySection", "trailers_cache")
     
     cachedJson = section.Read("trailer_data")
@@ -313,7 +312,6 @@ end function
 
 ' Función para guardar datos de trailer en cache local
 sub saveTrailerDataToCache(jsonString as String)
-    registry = CreateObject("roRegistry")
     section = CreateObject("roRegistrySection", "trailers_cache")
     
     currentTime = CreateObject("roDateTime").AsSeconds()
