@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<component name="MainScene" extends="Scene" focusable="true">
+    <script type="text/brightscript" uri="pkg:/components/MainScene.brs" />
+    <interface>
+        <field id="movieData" type="array" />
+        <field id="loadMoviesSignal" type="boolean" />
+        <field id="selectedMovie" type="assocarray" />
+        <field id="showDetails" type="boolean" />
+        <field id="requestTrailer" type="integer" />
+        <field id="trailerResult" type="string" />
+    </interface>
+    
+    <children>
+        <Label
+            id="titleLabel"
+            translation="[50, 20]"
+            width="1200"
+            height="50"
+            horizAlign="center"
+            font="font:LargeBoldSystemFont"
+            color="0xFFFFFFFF"
+            text="Top Ten TMDB"
+        />
+        <Label
+            id="selectedMovieLabel"
+            translation="[50, 80]"
+            width="1200"
+            height="40"
+            horizAlign="center"
+            font="font:MediumBoldSystemFont"
+            color="0xFFD700FF"
+            text="Selecciona una película"
+        />
+        <PosterGrid
+            id="movieGrid"
+            translation="[50, 130]"
+            itemSize="[200,300]"
+            numRows="2"
+            numColumns="5"
+        />
+        <Label
+            id="statusLabel"
+            translation="[50, 450]"
+            width="1000"
+            height="30"
+            horizAlign="left"
+            font="font:MediumSystemFont"
+            color="0xFFFFFFFF"
+            text="Cargando..."
+        />
+    </children>
+</component>

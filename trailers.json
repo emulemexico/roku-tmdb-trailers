@@ -1,0 +1,82 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-09-22",
+  "description": "Archivo de URLs de trailers para películas TMDB. Mapea movie_id con información del trailer.",
+  "trailers": {
+    "912649": {
+      "title": "Venom: The Last Dance",
+      "youtube_url": "https://www.youtube.com/watch?v=__2bjWbetsA",
+      "language": "es",
+      "type": "Trailer",
+      "quality": "HD"
+    },
+    "533535": {
+      "title": "Deadpool & Wolverine", 
+      "youtube_url": "https://www.youtube.com/watch?v=73_1biulkYk",
+      "language": "es",
+      "type": "Trailer",
+      "quality": "HD"
+    },
+    "1022789": {
+      "title": "Inside Out 2",
+      "youtube_url": "https://www.youtube.com/watch?v=LEjhY15eCx0",
+      "language": "es", 
+      "type": "Trailer",
+      "quality": "HD"
+    },
+    "519182": {
+      "title": "Despicable Me 4",
+      "youtube_url": "https://www.youtube.com/watch?v=qQlr9-rF32A",
+      "language": "es",
+      "type": "Trailer", 
+      "quality": "HD"
+    },
+    "748783": {
+      "title": "The Garfield Movie",
+      "youtube_url": "https://www.youtube.com/watch?v=IeFWNtMo1Fs",
+      "language": "es",
+      "type": "Trailer",
+      "quality": "HD"
+    },
+    "1079091": {
+      "title": "It Ends with Us",
+      "youtube_url": "https://www.youtube.com/watch?v=HqeNXFH3e7w",
+      "language": "es",
+      "type": "Trailer",
+      "quality": "HD"
+    },
+    "573435": {
+      "title": "Bad Boys: Ride or Die",
+      "youtube_url": "https://www.youtube.com/watch?v=hRFY_Fesa9Q",
+      "language": "es",
+      "type": "Trailer",
+      "quality": "HD"
+    },
+    "1144962": {
+      "title": "Longlegs",
+      "youtube_url": "https://www.youtube.com/watch?v=ZaBklEv6X-s",
+      "language": "es",
+      "type": "Trailer",
+      "quality": "HD"
+    },
+    "945961": {
+      "title": "Alien: Romulus",
+      "youtube_url": "https://www.youtube.com/watch?v=x0XDEhP4MQs",
+      "language": "es",
+      "type": "Trailer",
+      "quality": "HD"
+    },
+    "1147416": {
+      "title": "The Substance",
+      "youtube_url": "https://www.youtube.com/watch?v=UgOOvMQFH-c",
+      "language": "es",
+      "type": "Trailer",
+      "quality": "HD"
+    }
+  },
+  "fallback": {
+    "enabled": true,
+    "use_tmdb_api": true,
+    "description": "Si no se encuentra trailer en este archivo, usar API de TMDB como respaldo"
+  }
+}

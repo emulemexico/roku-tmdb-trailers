@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="MovieDetailsScene" extends="Scene">
+    <interface>
+        <field id="movie" type="assocarray" />
+    </interface>
+    
+    <children>
+        <Rectangle
+            id="background"
+            width="1920"
+            height="1080"
+            color="0x000000"
+        />
+        <Poster
+            id="backdropImage"
+            translation="[0, 0]"
+            width="1920"
+            height="1080"
+            uri=""
+        />
+        <Rectangle
+            id="overlay"
+            translation="[0, 600]"
+            width="1920"
+            height="480"
+            color="0x000000"
+            opacity="0.8"
+        />
+        <Poster
+            id="posterImage"
+            translation="[100, 200]"
+            width="300"
+            height="450"
+            uri=""
+        />
+        <Label
+            id="titleLabel"
+            translation="[450, 200]"
+            width="1000"
+            height="80"
+            font="LargeBold"
+            color="0xFFFFFF"
+            text=""
+        />
+        <Label
+            id="overviewLabel"
+            translation="[450, 300]"
+            width="1000"
+            height="200"
+            font="Medium"
+            color="0xFFFFFF"
+            text=""
+            wrap="true"
+        />
+        <Label
+            id="releaseDateLabel"
+            translation="[450, 520]"
+            width="500"
+            height="40"
+            font="Medium"
+            color="0xFFD700"
+            text=""
+        />
+        <Label
+            id="ratingLabel"
+            translation="[450, 560]"
+            width="500"
+            height="40"
+            font="Medium"
+            color="0xFFD700"
+            text=""
+        />
+        <Label
+            id="instructionLabel"
+            translation="[450, 620]"
+            width="1000"
+            height="40"
+            font="Small"
+            color="0xCCCCCC"
+            text="Presiona BACK para regresar"
+        />
+    </children>
+    
+    <script type="text/brightscript" uri="pkg:/components/MovieDetailsScene.brs" />
+</component>

@@ -1,0 +1,8 @@
+title=Top 10 Películas
+major_version=1
+minor_version=0
+build_version=00001
+mm_icon_focus_hd=pkg:/images/icon_focus_hd.png
+mm_icon_focus_sd=pkg:/images/icon_focus_sd.png
+bs_scenegraph_entry=MainScene
+bs_locale=es_ES
